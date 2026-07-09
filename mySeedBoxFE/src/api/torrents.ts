@@ -24,6 +24,16 @@ export async function addTorrent(magnetUri: string): Promise<void> {
   await parseOrThrow(response)
 }
 
+export async function addTorrentFile(file: File): Promise<void> {
+  const formData = new FormData()
+  formData.append('torrent', file)
+  const response = await fetch(`${BASE_URL}/api/torrents/file`, {
+    method: 'POST',
+    body: formData,
+  })
+  await parseOrThrow(response)
+}
+
 export async function removeTorrent(hash: string): Promise<void> {
   const response = await fetch(`${BASE_URL}/api/torrents/${hash}`, { method: 'DELETE' })
   await parseOrThrow(response)

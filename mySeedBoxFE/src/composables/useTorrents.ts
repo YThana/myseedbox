@@ -34,6 +34,20 @@ export function useTorrents() {
     }
   }
 
+  async function addTorrentFile(file: File) {
+    loading.value = true
+    error.value = null
+    try {
+      await torrentsApi.addTorrentFile(file)
+      await fetchTorrents()
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Failed to add torrent file'
+      throw err
+    } finally {
+      loading.value = false
+    }
+  }
+
   async function removeTorrent(hash: string) {
     try {
       await torrentsApi.removeTorrent(hash)
@@ -57,6 +71,7 @@ export function useTorrents() {
     loading: readonly(loading),
     error: readonly(error),
     addTorrent,
+    addTorrentFile,
     removeTorrent,
   }
 }
