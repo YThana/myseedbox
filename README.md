@@ -119,6 +119,7 @@ Just stop the corresponding container first (e.g. `docker compose stop backend`)
 |---|---|---|
 | `GET` | `/api/health` | Checks connectivity to qBittorrent |
 | `POST` | `/api/torrents` | Add a torrent by magnet link |
+| `POST` | `/api/torrents/file` | Add a torrent by uploading a `.torrent` file |
 | `GET` | `/api/torrents` | List all torrents with live progress |
 | `GET` | `/api/torrents/{hash}` | Get a single torrent's status |
 | `DELETE` | `/api/torrents/{hash}` | Remove a torrent |
