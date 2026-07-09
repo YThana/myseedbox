@@ -1,0 +1,30 @@
+# Local runtime data (downloaded torrents, qBittorrent state)
+data/
+
+# Environment files (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# Editor / tool-local config
+.claude/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+.eslintcache
+
+# Python
+__pycache__/
+*.py[oc]
+.venv/
+build/
+wheels/
+*.egg-info
