@@ -52,6 +52,13 @@ class QBittorrentClient:
             data={"urls": magnet_uri},
         )
 
+    async def add_torrent_file(self, filename: str, content: bytes) -> None:
+        await self._request(
+            "POST",
+            "/api/v2/torrents/add",
+            files={"torrents": (filename, content, "application/x-bittorrent")},
+        )
+
     async def list_torrents(self) -> list[dict[str, Any]]:
         response = await self._request("GET", "/api/v2/torrents/info")
         return response.json()

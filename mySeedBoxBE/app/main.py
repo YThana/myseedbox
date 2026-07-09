@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import AsyncIterator
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
@@ -47,6 +47,19 @@ async def health() -> dict[str, str]:
 async def add_torrent(request: AddTorrentRequest) -> dict[str, str]:
     try:
         await qbittorrent_client.add_magnet(request.magnet_uri)
+    except QBittorrentError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    return {"status": "added"}
+
+
+@app.post("/api/torrents/file", status_code=201)
+async def add_torrent_file(torrent: UploadFile = File(...)) -> dict[str, str]:
+    if not (torrent.filename or "").lower().endswith(".torrent"):
+        raise HTTPException(status_code=400, detail="File must be a .torrent file")
+
+    content = await torrent.read()
+    try:
+        await qbittorrent_client.add_torrent_file(torrent.filename, content)
     except QBittorrentError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
     return {"status": "added"}
