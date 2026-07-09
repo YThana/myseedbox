@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Magnet } from '@lucide/vue'
 import TorrentDashboard from '@/components/torrents/TorrentDashboard.vue'
 </script>
 
@@ -7,7 +6,7 @@ import TorrentDashboard from '@/components/torrents/TorrentDashboard.vue'
   <div class="app-shell">
     <header class="app-header">
       <div class="app-brand">
-        <Magnet class="app-brand-icon" :size="22" aria-hidden="true" />
+        <img src="/logo.png" alt="mySeedBox logo" class="app-brand-icon" width="28" height="28" />
         <h1 class="app-title">mySeedBox</h1>
       </div>
       <p class="app-subtitle">Grab a magnet link, seed it, download it.</p>
@@ -39,7 +38,8 @@ import TorrentDashboard from '@/components/torrents/TorrentDashboard.vue'
 }
 
 .app-brand-icon {
-  color: var(--color-accent-hover);
+  display: block;
+  border-radius: 7px;
 }
 
 .app-title {
