@@ -1,4 +1,8 @@
-# mySeedBox
+<p align="center">
+  <img src="docs/logo.png" alt="mySeedBox logo" width="120" />
+</p>
+
+<h1 align="center">mySeedBox</h1>
 
 A self-hosted seedbox: paste a magnet link, let [qBittorrent](https://www.qbittorrent.org/) download and seed it, and grab the finished files from a clean web UI. **Runs entirely on your own machine** — no cloud, no accounts, just Docker.
 
